@@ -67,10 +67,23 @@ struct GameErrorData
 	{
 		message = msg;
 		reconnect_requested = reconnect;
+		is_error = true;
+		errorstream << msg << std::endl;
+	}
+
+	/// Show a disconnect / access-denied reason without framing it as an engine error
+	/// @param msg Empty string means no message
+	void setDisconnect(const std::string &msg, bool reconnect = false)
+	{
+		message = msg;
+		reconnect_requested = reconnect;
+		is_error = false;
 		errorstream << msg << std::endl;
 	}
 
 	// Whether the server has requested a reconnect
 	bool reconnect_requested = false;
+	/// When false, the main menu shows a disconnect title instead of "An error occurred"
+	bool is_error = true;
 	std::string message;
 };

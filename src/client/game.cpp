@@ -1222,7 +1222,8 @@ bool Game::checkConnection()
 		const std::string reason = wide_to_utf8(
 			unescape_translate(utf8_to_wide(client->accessDeniedReason())));
 
-		errordata->setError(
+		// Access denied / disconnect_player is a normal disconnect, not an engine error
+		errordata->setDisconnect(
 			fmtgettext("Access denied. Reason: %s", reason.c_str()),
 			client->reconnectRequested()
 		);

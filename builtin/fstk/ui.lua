@@ -86,6 +86,9 @@ function ui.update()
 		local error_title
 		if string.find(gamedata.errormessage, "ModError") then
 			error_title = fgettext("An error occurred in a Lua script:")
+		elseif gamedata.is_error == false then
+			-- Access denied / disconnect_player: normal disconnect, not a software error
+			error_title = fgettext("Disconnected from server:")
 		else
 			error_title = fgettext("An error occurred:")
 		end

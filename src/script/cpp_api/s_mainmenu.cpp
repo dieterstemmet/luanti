@@ -21,6 +21,7 @@ void ScriptApiMainMenu::setMainMenuData(const GameErrorData *data)
 	}
 	lua_settable(L, gamedata_idx);
 	setboolfield(L, gamedata_idx, "reconnect_requested", data->reconnect_requested);
+	setboolfield(L, gamedata_idx, "is_error", data->is_error);
 	lua_pop(L, 1);
 }
 
